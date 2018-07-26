@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld :proxy="proxy" msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
   name: 'app',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      proxy: new Proxy(function() {}, {get () { return new Proxy(function() {}, {})} })
+    }
   }
 }
 </script>
